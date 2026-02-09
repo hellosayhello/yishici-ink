@@ -201,12 +201,10 @@ export default function AncientPoets() {
         content: m.text,
       }));
       history.push({ role: "user", content: userMsg });
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
           system: buildSystemPrompt(poet, lang),
           messages: history,
         }),
